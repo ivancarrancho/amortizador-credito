@@ -4,7 +4,7 @@
     Author     : EAlonso
 --%>
 <%@page import="java.util.Iterator"%>
-<%@page import="radial.radiales"%> 
+<%@page import="credit.Credit"%> 
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -24,65 +24,73 @@
 
 
     </head>
-    <body>
-
-        <div class="row">
-            <div class="col col-md"></div>
-            <div class="col-10 col-md-10">
-                <form action="radiales" method="get">
-                    <br>
-                    <div class="form-group"><h2>Calcular y amortizar crédito</h2></div>
-                    <div class="form-group">
-                        <label>Monto del crédito: </label>
-                        <input type="number" class="form-control" name="amount" min="0" max="5000000000">
-                        <label>Número de cuotas:</label>
-                        <input type="number" class="form-control" name="dues" min="1" max="500">
-                        <label>Interés (%): </label>
-                        <input type="number" class="form-control" name="interest" min="1" max="100">
-                    </div>
-
-                    <input type="submit" class="btn btn-success" value="Enviar">
-                </form>
+    <body style="width: 70%; margin: 0 auto;">
+        <div class="col-xs-1 center-block">
+            <form action="credit" method="get">
                 <br>
+                <div class="form-group"><h1>Calcular y amortizar crédito</h1></div>
+                <br>
+                <br>
+                <div class="form-group">
+                    <label><h4>Monto del crédito:</h4> </label>
+                    <input type="number" class="form-control" name="amount" min="0" max="5000000000" required>
+                    <label><h4>Número de cuotas:</h4></label>
+                    <input type="number" class="form-control" name="dues" min="1" max="500" required>
+                    <label><h4>Interés (%):</h4></label>
+                    <input type="decimal" class="form-control" name="interest" min="0" max="100" required>
+                </div>
 
-                <c:if test="${_amount != null}">
-                    <div class="centered">
-                        <p>Para un crédito de $<b>${_amount}</b> diferido en <b>${_dues_quantity}</b> cuotas, se debe pagar cada cuota de $<b>${_dues}</b></p>
-                    </div>
-                </c:if>
-            </div>
-            <div class="col col-md"></div>
+                <input type="submit" class="btn btn-success" value="Enviar">
+            </form>
+            <br>
+
+            <c:if test="${new_amount != null}">
+                <div class="centered">
+                    <p>Para un crédito de $<b>${new_amount}</b> diferido en <b>${_dues_quantity}</b> cuotas, se debe pagar cada cuota de $<b>${_dues}</b></p>
+                </div>
+            </c:if>
+
+
+            <table class="table table-bordered table-striped centered" style="margin-top: 40px;">
+                <thead>
+                    <tr class="filters">
+                        <th>Cuota No.</th>
+                        <th>Valor de las cuotas</th>
+                        <th>Deuda</th>
+                        <th>Abono</th>
+
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <c:forEach items="${duePositionArray}" var="item">
+                                ${item} <br>
+                            </c:forEach>
+                        </td>
+                        <td>
+
+                            <c:forEach items="${duesArray}" var="item">
+                                $ ${item} <br>
+                            </c:forEach>
+                        </td>
+                        <td>
+
+                            <c:forEach items="${balanceArray}" var="item">
+                                $ ${item} <br>
+                            </c:forEach>
+
+                        </td>
+                        <td>
+
+                            <c:forEach items="${inverseArray}" var="item">
+                                $ ${item} <br>
+                            </c:forEach>
+
+                        </td>                    
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        
-        <table class="table table-bordered table-striped" style="margin-top: 40px;">
-            <thead>
-                <tr class="filters">
-                    <th>Cuota No.</th>
-                    <th>Valor de las cuotas</th>
-                    <th>Deuda</th>
-
-                </tr> 
-            <tbody>
-                <tr>
-                    <td>
-                        <c:forEach items="${duePositionArray}" var="item">
-                            ${item} <br>
-                        </c:forEach>
-                    </td>
-                    <td>
-
-                        <c:forEach items="${duesArray}" var="item">
-                            ${item} <br>
-                        </c:forEach>
-                    </td>
-                    <td>
-
-                        <c:forEach items="${balanceArray}" var="item">
-                            ${item} <br>
-                        </c:forEach>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    </body>    
 </html>
