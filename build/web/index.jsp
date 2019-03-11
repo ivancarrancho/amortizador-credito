@@ -28,23 +28,20 @@
         <div class="col-xs-1 center-block">
             <form action="credit" method="get">
                 <br>
-                <div class="form-group"><h1>Calcular y amortizar crédito</h1></div>
+                <div class="form-group"><h1>Adivína el número</h1></div>
                 <br>
                 <br>
                 <div class="form-group">
-                    <label><h4>Monto del crédito:</h4> </label>
-                    <input type="number" class="form-control" name="amount" min="0" max="5000000000" required>
-                    <label><h4>Número de cuotas:</h4></label>
-                    <input type="number" class="form-control" name="dues" min="1" max="500" required>
-                    <label><h4>Interés (%):</h4></label>
-                    <input type="decimal" class="form-control" name="interest" min="0" max="100" required>
+                    <label><h4>Ingresa número del 0 al 9</h4> </label>
+                    <input type="number" class="form-control" name="amount" min="0" max="9" required>
+
                 </div>
 
                 <input type="submit" class="btn btn-success" value="Enviar">
             </form>
             <br>
 
-            <c:if test="${new_amount != null}">
+            <c:if test="${new_amount == true}">
                 <div class="centered">
                     <p>Para un crédito de $<b>${new_amount}</b> diferido en <b>${_dues_quantity}</b> cuotas, se debe pagar cada cuota de $<b>${_dues}</b></p>
                 </div>
