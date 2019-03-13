@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.Vector;
 import java.util.Iterator;
 import credit.Credit;
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write(" \n");
       out.write("\n");
       out.write("\n");
@@ -79,78 +81,83 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("    </head>\n");
-      out.write("    <div class=\"row\">\n");
-      out.write("        <body class=\"col-xs-1 center-block\">\n");
-      out.write("            <div class=\"col-xs-1 center-block\">\n");
-      out.write("                <form action=\"credit\" method=\"get\">\n");
-      out.write("                    <br>\n");
-      out.write("                    <div class=\"form-group\"><h2>Calcular y amortizar crédito</h2></div>\n");
-      out.write("                    <div class=\"form-group\">\n");
-      out.write("                        <label>Monto del crédito: </label>\n");
-      out.write("                        <input type=\"number\" class=\"form-control\" name=\"amount\" min=\"0\" max=\"5000000000\">\n");
-      out.write("                        <label>Número de cuotas:</label>\n");
-      out.write("                        <input type=\"number\" class=\"form-control\" name=\"dues\" min=\"1\" max=\"500\">\n");
-      out.write("                        <label>Interés (%): </label>\n");
-      out.write("                        <input type=\"number\" class=\"form-control\" name=\"interest\" min=\"1\" max=\"100\">\n");
-      out.write("                    </div>\n");
-      out.write("\n");
-      out.write("                    <input type=\"submit\" class=\"btn btn-success\" value=\"Enviar\">\n");
-      out.write("                </form>\n");
+      out.write("    <body style=\"width: 70%; margin: 0 auto;\">\n");
+      out.write("        <div class=\"col-xs-1 center-block\">\n");
+      out.write("            <form action=\"credit\" method=\"post\">\n");
       out.write("                <br>\n");
+      out.write("                <div class=\"form-group\"><h1>Adivína el número</h1></div>\n");
+      out.write("                <br>\n");
+      out.write("                <br>\n");
+      out.write("                <div class=\"form-group\">\n");
+      out.write("                    <label><h4>Ingresa número del 0 al 9</h4> </label>\n");
+      out.write("                    <input type=\"number\" class=\"form-control\" name=\"amount\" min=\"0\" max=\"9\" required>\n");
       out.write("\n");
+      out.write("                </div>\n");
       out.write("                ");
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
       out.write("\n");
+      out.write("            </form>\n");
+      out.write("            <br>\n");
+      out.write("            ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loginCount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\n");
+      out.write("            ");
+      if (_jspx_meth_c_if_1(_jspx_page_context))
+        return;
+      out.write("\n");
       out.write("            \n");
+      out.write("            ");
+      if (_jspx_meth_c_if_4(_jspx_page_context))
+        return;
       out.write("\n");
-      out.write("                <table class=\"table table-bordered table-striped centered\" style=\"margin-top: 40px;\">\n");
-      out.write("                    <thead>\n");
-      out.write("                        <tr class=\"filters\">\n");
-      out.write("                            <th>Cuota No.</th>\n");
-      out.write("                            <th>Valor de las cuotas</th>\n");
-      out.write("                            <th>Deuda</th>\n");
-      out.write("                            <th>Abono</th>\n");
+      out.write("            \n");
+      out.write("            <table class=\"table table-bordered table-striped centered\" style=\"margin-top: 40px;\">\n");
+      out.write("                <thead>\n");
+      out.write("                    <tr class=\"filters\">\n");
+      out.write("                        <th>Cuota No. </th>\n");
+      out.write("                        <th>Valor de las cuotas</th>\n");
+      out.write("                        <th>Deuda</th>\n");
+      out.write("                        <th>Abono</th>\n");
       out.write("\n");
-      out.write("                        </tr> \n");
-      out.write("                    </thead>\n");
-      out.write("                    <tbody>\n");
-      out.write("                        <tr>\n");
-      out.write("                            <td>\n");
-      out.write("                                ");
+      out.write("                    </tr> \n");
+      out.write("                </thead>\n");
+      out.write("                <tbody>\n");
+      out.write("                    <tr>\n");
+      out.write("                        <td>\n");
+      out.write("                            ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("                            </td>\n");
-      out.write("                            <td>\n");
+      out.write("                        </td>\n");
+      out.write("                        <td>\n");
       out.write("\n");
-      out.write("                                ");
+      out.write("                            ");
       if (_jspx_meth_c_forEach_1(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("                            </td>\n");
-      out.write("                            <td>\n");
+      out.write("                        </td>\n");
+      out.write("                        <td>\n");
       out.write("\n");
-      out.write("                                ");
+      out.write("                            ");
       if (_jspx_meth_c_forEach_2(_jspx_page_context))
         return;
       out.write("\n");
       out.write("\n");
-      out.write("                            </td>\n");
-      out.write("                            <td>\n");
+      out.write("                        </td>\n");
+      out.write("                        <td>\n");
       out.write("\n");
-      out.write("                                ");
+      out.write("                            ");
       if (_jspx_meth_c_forEach_3(_jspx_page_context))
         return;
       out.write("\n");
       out.write("\n");
-      out.write("                            </td>                    \n");
-      out.write("                        </tr>\n");
-      out.write("                    </tbody>\n");
-      out.write("                </table>\n");
-      out.write("            </div>\n");
-      out.write("        </body>    \n");
-      out.write("    </div>\n");
+      out.write("                        </td>                    \n");
+      out.write("                    </tr>\n");
+      out.write("                </tbody>\n");
+      out.write("            </table>\n");
+      out.write("        </div>\n");
+      out.write("    </body>    \n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -173,20 +180,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
     _jspx_th_c_if_0.setPageContext(_jspx_page_context);
     _jspx_th_c_if_0.setParent(null);
-    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_amount != null}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loginCount == null || loginCount < 3}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("                    <div class=\"centered\">\n");
-        out.write("                        <p>Para un crédito de $<b>");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_amount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</b> diferido en <b>");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_dues_quantity}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</b> cuotas, se debe pagar cada cuota de $<b>");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_dues}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</b></p>\n");
-        out.write("                    </div>\n");
+        out.write("                    <input type=\"submit\" class=\"btn btn-success\" value=\"Enviar\">\n");
         out.write("                ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -198,6 +197,137 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       return true;
     }
     _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_1 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_1.setParent(null);
+    _jspx_th_c_if_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loginCount < 3}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_1 = _jspx_th_c_if_1.doStartTag();
+    if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                ");
+        if (_jspx_meth_c_if_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_if_1, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("                ");
+        if (_jspx_meth_c_if_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_if_1, _jspx_page_context))
+          return true;
+        out.write("\n");
+        out.write("            ");
+        int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_2(javax.servlet.jsp.tagext.JspTag _jspx_th_c_if_1, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_2 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_2.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_if_1);
+    _jspx_th_c_if_2.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resp == true}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_2 = _jspx_th_c_if_2.doStartTag();
+    if (_jspx_eval_c_if_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                    <div class=\"centered\">\n");
+        out.write("                        <h3>Adivinaste, el número era ");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${result}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("!!!!!!!!!!!!!!!!!</h3>\n");
+        out.write("                    </div>\n");
+        out.write("                ");
+        int evalDoAfterBody = _jspx_th_c_if_2.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_2);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_2);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_3(javax.servlet.jsp.tagext.JspTag _jspx_th_c_if_1, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_3 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_3.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_if_1);
+    _jspx_th_c_if_3.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resp == false}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_3 = _jspx_th_c_if_3.doStartTag();
+    if (_jspx_eval_c_if_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                    <div class=\"centered\">\n");
+        out.write("                        <h3>el número no es ");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_amount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write(", intento No. ");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loginCount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("</h3>\n");
+        out.write("                    </div>\n");
+        out.write("                ");
+        int evalDoAfterBody = _jspx_th_c_if_3.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_3);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_3);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_4(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_4 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_4.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_4.setParent(null);
+    _jspx_th_c_if_4.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loginCount >= 3}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_4 = _jspx_th_c_if_4.doStartTag();
+    if (_jspx_eval_c_if_4 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                <h3>Finalizaste el número de intentos ");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loginCount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write(", Gracias</h3>\n");
+        out.write("            ");
+        int evalDoAfterBody = _jspx_th_c_if_4.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_4);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_4);
     return false;
   }
 
@@ -217,10 +347,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\n");
-          out.write("                                    ");
+          out.write("                                ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(" <br>\n");
-          out.write("                                ");
+          out.write("                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -256,10 +386,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\n");
-          out.write("                                    $ ");
+          out.write("                                $ ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(" <br>\n");
-          out.write("                                ");
+          out.write("                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -295,10 +425,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\n");
-          out.write("                                    $ ");
+          out.write("                                $ ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(" <br>\n");
-          out.write("                                ");
+          out.write("                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_2.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -334,10 +464,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\n");
-          out.write("                                    $ ");
+          out.write("                                $ ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(" <br>\n");
-          out.write("                                ");
+          out.write("                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_3.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;

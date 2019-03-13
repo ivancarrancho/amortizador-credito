@@ -3,6 +3,7 @@
     Created on : 26/02/2019, 01:26:44 PM
     Author     : EAlonso
 --%>
+<%@page import="java.util.Vector"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="credit.Credit"%> 
 <%@page import="java.util.ArrayList"%>
@@ -26,7 +27,7 @@
     </head>
     <body style="width: 70%; margin: 0 auto;">
         <div class="col-xs-1 center-block">
-            <form action="credit" method="get">
+            <form action="credit" method="post">
                 <br>
                 <div class="form-group"><h1>Adivína el número</h1></div>
                 <br>
@@ -36,58 +37,33 @@
                     <input type="number" class="form-control" name="amount" min="0" max="9" required>
 
                 </div>
-
-                <input type="submit" class="btn btn-success" value="Enviar">
+                <c:if test="${loginCount == null || loginCount <= 2 || resp == true}">
+                    <input type="submit" class="btn btn-success" value="Enviar">
+                </c:if>
             </form>
             <br>
-
-            <c:if test="${new_amount == true}">
-                <div class="centered">
-                    <p>Para un crédito de $<b>${new_amount}</b> diferido en <b>${_dues_quantity}</b> cuotas, se debe pagar cada cuota de $<b>${_dues}</b></p>
-                </div>
+            <c:if test="${loginCount < 3}">
+                <c:if test="${resp == true}">
+                    <div class="centered">
+                        <h3>Adivinaste, el número era ${_amount}!!!!!!!!!!!!!!!!!</h3>
+                    </div>
+                </c:if>
+                <c:if test="${resp == false}">
+                    <div class="centered">
+                        <h3>El número no es ${_amount}, intento No. ${loginCount}</h3>
+                    </div>
+                </c:if>
             </c:if>
-
-
-            <table class="table table-bordered table-striped centered" style="margin-top: 40px;">
-                <thead>
-                    <tr class="filters">
-                        <th>Cuota No.</th>
-                        <th>Valor de las cuotas</th>
-                        <th>Deuda</th>
-                        <th>Abono</th>
-
-                    </tr> 
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <c:forEach items="${duePositionArray}" var="item">
-                                ${item} <br>
-                            </c:forEach>
-                        </td>
-                        <td>
-
-                            <c:forEach items="${duesArray}" var="item">
-                                $ ${item} <br>
-                            </c:forEach>
-                        </td>
-                        <td>
-
-                            <c:forEach items="${balanceArray}" var="item">
-                                $ ${item} <br>
-                            </c:forEach>
-
-                        </td>
-                        <td>
-
-                            <c:forEach items="${inverseArray}" var="item">
-                                $ ${item} <br>
-                            </c:forEach>
-
-                        </td>                    
-                    </tr>
-                </tbody>
-            </table>
+            
+            <c:if test="${loginCount >= 3}">
+                <h3>Finalizaste el número de intentos ${loginCount}, Gracias</h3>
+                <%
+                    HttpSession s =request.getSession();
+                    s.removeAttribute("loginCount");
+                %>
+            </c:if>
         </div>
     </body>    
+    <small>${result}</small>
+    
 </html>

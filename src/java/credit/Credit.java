@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,48 +26,57 @@ public class Credit extends HttpServlet {
         throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
     }
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
-        HttpSession misession= (HttpSession) request.getSession();
-        Producto miproducto= (Producto) misession.getAttribute("producto");
-        PrintWriter pw= response.getWriter();
-        pw.println("<html><body>"+ miproducto.getId()+ "," +miproducto.getConcepto()+","+ miproducto.getImporte());
-        pw.close();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String amount = request.getParameter("amount");
         
-        try (PrintWriter out = response.getWriter()) {
+        HttpSession s =request.getSession();
+        
+        int loginAttempt;
+        int result;
+        
+        if (s.getAttribute("loginCount") == null) {
+            s.setAttribute("loginCount", 1);
+            loginAttempt = (Integer) s.getAttribute("loginCount");
+            Random random = new Random();
+            result = random.nextInt(9);            
+            s.setAttribute("result", result);
+        }else {
+            loginAttempt = (Integer) s.getAttribute("loginCount");
+            result = (Integer) s.getAttribute("result");
+            s.setAttribute("loginCount",loginAttempt++);
+        } 
+        
 
-            String amount = request.getParameter("amount");
-            int _amount = Integer.parseInt(amount);
-            int result = 0;
-            
-            result = (int) (Math.random() * 9);
-            
-            ArrayList duesArray = new ArrayList();
-            ArrayList balanceArray = new ArrayList();
-            ArrayList duePositionArray = new ArrayList();
-            ArrayList inverseArray = new ArrayList();
-
-            /*
-            for (int i = 1; i <= _dues_quantity; i++) {
-                acumulado = acumulado + _dues;
-                duesArray.add(_dues);
-                inverseArray.add(acumulado);
-                balanceArray.add(total_2);
-                duePositionArray.add(i);
-                total_2 = total_2 - _dues;
+        int _amount = Integer.parseInt(amount);
+        boolean resp = false;
+    
+        if (loginAttempt <= 3){
+            if (_amount == result) {
+                resp = true;
+                s.setAttribute("resp", resp);
+                s.setAttribute("_amount", _amount);                                      
+                s.setAttribute("result", result);                                      
+                s.setAttribute("loginCount",loginAttempt++);
+                System.out.println(s.getAttribute("loginCount"));
+                
+            }else{
+                resp = false;
+                s.setAttribute("loginCount",loginAttempt++);
+                s.setAttribute("resp", resp);     
+                s.setAttribute("result", result);
+                s.setAttribute("_amount", _amount);                   
+                System.out.println(s.getAttribute("loginCount"));
             }
-
-            request.setAttribute("_dues_quantity", _dues_quantity);
-            request.setAttribute("_dues", _dues);
-            request.setAttribute("new_amount", new_amount);
-            */
-            request.setAttribute("duesArray", duesArray);
-            request.setAttribute("balanceArray", balanceArray);
-            request.setAttribute("duePositionArray", duePositionArray);
-            request.setAttribute("inverseArray", inverseArray);
-
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        }else{
+            resp = false;
+            s.setAttribute("loginCount",loginAttempt++);
+            s.setAttribute("resp", resp);
+            s.setAttribute("result", result);
+            s.setAttribute("_amount", _amount);                 
+            s.removeAttribute("loginCount");
         }
+        
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }
