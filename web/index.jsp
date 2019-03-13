@@ -56,7 +56,12 @@
             </c:if>
             
             <c:if test="${loginCount >= 3}">
+                <div>
+                    <input type="submit" class="btn btn-success" style="float: right;" value="Reintentar" onclick="window.location='/build';" />       
+                </div>
+                
                 <h3>Finalizaste el número de intentos ${loginCount}, Gracias</h3>
+                
                 <%
                     HttpSession s =request.getSession();
                     s.removeAttribute("loginCount");

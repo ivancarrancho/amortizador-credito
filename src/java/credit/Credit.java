@@ -47,7 +47,6 @@ public class Credit extends HttpServlet {
             s.setAttribute("loginCount",loginAttempt++);
         } 
         
-
         int _amount = Integer.parseInt(amount);
         boolean resp = false;
     
